@@ -4,7 +4,9 @@ from src.text2img import text2image
 from src.img2img import image2image
 from src.inpaint import inpaint as inpaintImage
 from fastapi import FastAPI, File, UploadFile, staticfiles
+import os
 
+os.mkdir("inputs")
 
 app = FastAPI()
 app.mount("/images", staticfiles.StaticFiles(directory="outputs"), name="static")
