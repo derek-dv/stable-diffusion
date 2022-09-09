@@ -1,6 +1,6 @@
 from torch import autocast
 import string    
-import random
+import random, os
 import torch
 from PIL import Image
 from io import BytesIO
@@ -25,5 +25,6 @@ def image2image(file_path: str, prompt: str="A fantasy landscape, trending on ar
     with autocast("cuda"):
         images = pipe(prompt=prompt, init_image=init_image, strength=0.75, guidance_scale=7.5).images
     ran = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 10))
+    os.mkdir("outputs/img2img")
     images[0].save(f"outputs/img2img/{ran}.png")
     return f"img2img/{ran}.png"
