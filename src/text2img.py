@@ -19,4 +19,3 @@ def text2image(prompt="a photo of an astronaut riding a horse on mars"):
         filename = f"outputs/text2img/{ran}.png"
         image.save(filename)
     return f"text2img/{ran}.png"
-text2image()
