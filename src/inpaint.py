@@ -19,7 +19,6 @@ pipe = StableDiffusionInpaintPipeline.from_pretrained(
 pipe = pipe.to(device)
 
 def inpaint(input_image: str, mask_image: str, prompt):
-    prompt = "a cat sitting on a bench"
     init_image = get_image(input_image).resize((512, 512))
     mask_image = get_image(mask_image).resize((512, 512))
     with autocast("cuda"):
