@@ -56,7 +56,7 @@ def img2img(prompt: str, input: UploadFile = File(...), mask: UploadFile = File(
         input_file_name = "inputs/"+input.filename.replace(" ", "-")
         with open(input_file_name, 'wb') as f:
             f.write(input_contents)
-        url = inpaintImage(input_file_name, mask_file_name, "rats on a  bench")
+        url = inpaintImage(input_file_name, mask_file_name, prompt)
         mask.file.close()
         input.file.close()
         return {"image": f"images/{url}"}
