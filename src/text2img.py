@@ -1,7 +1,7 @@
 from torch import autocast
 from diffusers import StableDiffusionPipeline
 import string    
-import random, os
+import random
 
 pipe = StableDiffusionPipeline.from_pretrained(
     "CompVis/stable-diffusion-v1-4", 
@@ -15,7 +15,6 @@ def text2image(prompt="a photo of an astronaut riding a horse on mars"):
         sample = pipe(prompt)#.sample[0] 
         image = sample["sample"][0]
         ran = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 10))
-        os.mkdir("outputs/text2img")
         filename = f"outputs/text2img/{ran}.png"
         image.save(filename)
     return f"text2img/{ran}.png"

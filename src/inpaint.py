@@ -1,5 +1,5 @@
 from torch import autocast
-import torch, os
+import torch
 import PIL, random, string
 
 from diffusers import StableDiffusionInpaintPipeline
@@ -25,6 +25,5 @@ def inpaint(input_image: str, mask_image: str, prompt):
     with autocast("cuda"):
         images = pipe(prompt=prompt, init_image=init_image, mask_image=mask_image, strength=0.75).images
     ran = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 10))
-    os.mkdir("outputs/inpaint")
     images[0].save(f"outputs/inpaint/{ran}.png")
     return f"inpaint/{ran}.png"
